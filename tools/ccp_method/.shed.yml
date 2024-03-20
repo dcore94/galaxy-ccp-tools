@@ -5,4 +5,4 @@ long_description: List, choose and execute a method on the D4Science CCP platfor
 name: ccp_method
 owner: m.lettere@gmail.com
 homepage_url: https://github.com/dcore94/galaxy-ccp-tools
-remote_repository_url: https://github.com/dcore94/galaxy-ccp-tools/tree/main
+remote_repository_url: https://github.com/dcore94/galaxy-ccp-tools/tree/main/tools/ccp_method/
