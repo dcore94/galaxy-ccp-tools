@@ -1,0 +1,10 @@
+<tool id="ip_threshold" name="Threshold image" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" profile="20.05">
+   <description>List and execute a method on CCP</description>
+   <macros>
+       <token name="@TOOL_VERSION@">0.0.1</token>
+       <token name="@VERSION_SUFFIX@">1</token>
+   </macros>
+   <command><![CDATA[
+   echo "Hello world"
+   ]]></command>
+</tool>
