@@ -1,0 +1,31 @@
+<tool id="ccp_request" name="Execute a CCP method by request" version="1.0.0">
+  <description>CCP execution request</description>
+  <creator>
+    <person givenName="Marco" familyName="Lettere" email="marco.lettere@nubisware.com"/>
+    <organization name="Nubisware S.r.l."/>
+  </creator>
+  <command><![CDATA[python3 $__tool_directory__/request.py '$ccp_request']]></command>
+  <environment_variables>
+    <environment_variable name="OIDC_ACCESS_TOKEN" inject="oidc_access_token_keycloak"/>
+    <environment_variable name="OIDC_REFRESH_TOKEN" inject="oidc_refresh_token_keycloak"/>
+  </environment_variables>
+  <inputs>
+    <!--param name="ccp_request" type="text" optional="false" label="The OGC processes JSON request" area="true">
+      <sanitizer sanitize="false"></sanitizer>
+    </param-->
+    <param name="ccp_request" type="data" format="json" label="Exported CCP request" help="The JSON request you have exported from you CCP instance. This contains the Method identification, the OGC request with input parameters and some additional information for setting the D4Science context."/>
+  </inputs>
+  <outputs>
+    <data auto_format="true" name="files">
+      <discover_datasets pattern="(?P&lt;designation&gt;output\.zip)" assign_primary_output="true" visible="true" format="zip"/>
+      <discover_datasets pattern="(?P&lt;designation&gt;stdout).+\.txt" visible="true" foramt="txt"/>
+      <discover_datasets pattern="(?P&lt;designation&gt;stderr).+\.txt" visible="true" format="txt"/>
+      <discover_datasets pattern="(?P&lt;designation&gt;^(?!stdout.+\.txt|stderr.+\.txt|ccp-entrypoint\.sh|ccpenv|method\.yaml|output\.zip).+)\.(?P&lt;ext&gt;.*$)" recurse="true" visible="true" directory="."/>
+    </data>
+  </outputs>
+  <tests>
+  </tests>
+  <help>
+Execute a Method on CCP through a OGC processes 1.1 JSON request
+  </help>
+</tool>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<toolbox monitor="true">
+  <section id="ex" name="Examples">
+    <tool file="example/example.xml"/>
+    <tool file="ccp/dummy.xml"/>
+  </section>
+  <section id="ccp" name="CCP">
+    <tool file="ccp/request.xml"/>
+  </section>
+  <section id="ccp-installed" name="CCP installed methods">
+    <tool file="ccp/method_9c814f0d-17ce-4c2c-805d-63c77d63c0d4.xml"/>
+    <tool file="ccp/method_5c94b884-0c7b-48c1-8226-6c47c493efc6.xml"/>
+    <tool file="ccp/method_156415fa-e99a-4664-8719-2448ab56d9f7.xml"/>
+  </section>
+</toolbox>

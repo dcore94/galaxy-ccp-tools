@@ -1,0 +1,19 @@
+<tool id="ccp_dummy_test" name="A simple method for testing CCP integration" version="1.0.0">
+  <description>CCP integration test tool</description>
+  <creator>
+    <person givenName="Marco" familyName="Lettere" email="marco.lettere@nubisware.com"/>
+    <organization name="Nubisware S.r.l."/>
+  </creator>
+  <command><![CDATA[python3 $__tool_directory__/dummy.py '$fake_param']]></command>
+  <inputs>
+    <param name="fake_param" type="text" label="A Fake param" help="A fake param."/>
+  </inputs>
+  <outputs>
+    <data name="dummy.out" label="Fake output file" from_work_dir="dummy.out" format="txt"/>fa
+  </outputs>
+  <tests>
+  </tests>
+  <help>
+A tool that just wastes some time and generates fake output from fake input.
+  </help>
+</tool>

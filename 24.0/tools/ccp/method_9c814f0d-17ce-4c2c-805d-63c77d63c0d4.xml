@@ -1,0 +1,38 @@
+<tool id="9c814f0d-17ce-4c2c-805d-63c77d63c0d4" name="SimpleImageClassifier" version="0.0.1">
+    <title>SimpleImageClassifier</title>
+    <description>A simple image classifier with parametrizable url to input picture compatible with the D4Science infrastructure</description>
+    <creator>
+      <person givenName="Marco" familyName="Lettere" email="Marco"/>
+      <organization name="D4Science"/>
+    </creator>
+    <command>python3 $__tool_directory__/run.py</command>
+    <configfiles>
+      <configfile name="request" filename="request.json">{"inputs":{"ccpimage":"$ccpimage","ccpnote":"$ccpnote","pictureurl":"$pictureurl"},"outputs":{"outputimage":{"transmissionMode":"value"}},"response":"raw"}</configfile>
+    </configfiles>
+    <environment_variables>
+      <environment_variable name="OIDC_ACCESS_TOKEN" inject="oidc_access_token_keycloak"/>
+      <environment_variable name="OIDC_REFRESH_TOKEN" inject="oidc_refresh_token_keycloak"/>
+      <environment_variable name="ccp_ep">https://ccp.cloud-dev.d4science.org</environment_variable>
+      <environment_variable name="ccp_method_id">9c814f0d-17ce-4c2c-805d-63c77d63c0d4</environment_variable>
+      <environment_variable name="context">%2Fgcube%2Fdevsec%2FCCP</environment_variable>
+    </environment_variables>
+    <inputs>
+      <param name="ccpimage" type="text" value="nubisware/simpleimageclassifier:latest" optional="false" label="Runtime" help="The image of the runtime to use for method execution. This depends on the infrastructure specific protocol for interacting with registries.">
+        <sanitizer sanitize="false"/>
+      </param>
+      <param name="ccpnote" type="text" value="test" optional="false" label="Annotations for execution" help="The value of this parameter will be associated as annotation to the execution.">
+        <sanitizer sanitize="false"/>
+      </param>
+      <param name="pictureurl" type="text" value="https://as1.ftcdn.net/v2/jpg/00/85/32/68/1000_F_85326806_k3nKFfDnL7BKZZpgplibILjssleez7za.jpg" optional="false" label="Input picture" help="The download url of the input picture to be analyzed">
+        <sanitizer sanitize="false"/>
+      </param>
+    </inputs>
+    <outputs>
+      <data name="defaults">
+        <discover_datasets pattern="(?P&lt;designation&gt;output\.zip)" assign_primary_output="true" visible="true" format="zip"/>
+      </data>
+      <data name="outputimage" label="Output image" auto_format="true" from_work_dir="output/canegatto_out.jpg" visible="true"/>
+    </outputs>
+    <tests/>
+    <help>A simple image classifier with parametrizable url to input picture compatible with the D4Science infrastructure</help>
+  </tool>

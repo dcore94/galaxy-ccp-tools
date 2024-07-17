@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+  glx:
+    image: "galaxy/galaxy-min:24.0-auto"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./galaxy.yml:/galaxy/server/config/galaxy.yml
+      - ./oidc_config.xml:/galaxy/server/config/oidc_config.xml   
+      - ./oidc_backends_config.xml:/galaxy/server/config/oidc_backends_config.xml
+      - ./tool_conf.xml:/galaxy/server/config/tool_conf.xml
+      - ./tools/example:/galaxy/server/tools/example
+      - ./tools/ccp:/galaxy/server/tools/ccp

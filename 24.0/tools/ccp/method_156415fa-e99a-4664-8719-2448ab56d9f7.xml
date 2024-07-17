@@ -1,0 +1,73 @@
+<tool id="156415fa-e99a-4664-8719-2448ab56d9f7" name="Python3.8 inline with many params" version="0.0.5">
+  <title>Python3.8 inline with many params</title>
+  <description>Test for a python3.8 inline code with many fake parameters</description>
+  <creator>
+    <person givenName="Marco" familyName="Lettere" email="Marco"/>
+    <organization name="D4Science"/>
+  </creator>
+  <command>python3 $__tool_directory__/run.py</command>
+  <configfiles>
+    <configfile name="request" filename="request.json">{"inputs":{"ccpimage":"$ccpimage","code":"$code","opts":"$opts","d":"$d","t":"$t","dt":"$dt","config":"$config","multiple":"$multiple","file":"$file","secret":"$secret","remotefile":"$remotefile","multichoice":"$multichoice"},"outputs":{"stdout":{"transmissionMode":"value"},"stderr":{"transmissionMode":"value"},"inputimage":{"transmissionMode":"value"}},"response":"raw"}</configfile>
+  </configfiles>
+  <environment_variables>
+    <environment_variable name="OIDC_ACCESS_TOKEN" inject="oidc_access_token_keycloak"/>
+    <environment_variable name="OIDC_REFRESH_TOKEN" inject="oidc_refresh_token_keycloak"/>
+    <environment_variable name="ccp_ep">https://ccp.cloud-dev.d4science.org</environment_variable>
+    <environment_variable name="ccp_method_id">156415fa-e99a-4664-8719-2448ab56d9f7</environment_variable>
+    <environment_variable name="context">%2Fgcube%2Fdevsec%2FCCP</environment_variable>
+  </environment_variables>
+  <inputs>
+    <param name="ccpimage" type="text" value="python:3.8" optional="false" label="Runtime" help="The image of the runtime to use for method execution. This depends on the infrastructure specific protocol for interacting with registries.">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="code" type="text" value="import sys; print(sys.argv)" optional="false" label="Code" help="Inlined code to be executed" area="true">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="opts" type="select" value="Second" optional="true" label="Options" help="A set of fake options that will not be used except for testing selects">
+      <option value="First">First</option>
+      <option value="Second" checked="true">Second</option>
+      <option value="Third">Third</option>
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="d" type="text" value="2022-03-24" optional="false" label="Date" help="A fake date input to test dates">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="t" type="text" value="10:02:22" optional="true" label="Time" help="A fake time input to test time">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="dt" type="text" value="2022-03-24T10:02:22" optional="true" label="Datetime" help="A fake date and time input to test date and time">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="config" type="text" value="[default]&#xD;&#xA;name=John Doe" optional="true" label="Configuration" help="Configuration used by the inlined code" area="true">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="multiple" type="text" value="aha,oho" optional="false" label="With max occurs" help="A new input field with multiple instances">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="file" type="text" value="Q2lhbyEK" optional="false" label="A file" help="A new input field of type file">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="secret" type="text" value="hidden password" optional="false" label="A secret" help="A new input field of type secret">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="remotefile" type="text" value="https://data.dev.d4science.org/shub/E_ZGk5bTVMdFZZK21KRk80R0tVUzZDNkpxL2V6WjdKTWhOa1B3YUlQbWQxVlhmNzJ5SWtZb1FhZFVqOUxhdU4vNA==" optional="false" label="File from workspace" help="Link a file from workspace">
+      <sanitizer sanitize="false"/>
+    </param>
+    <param name="multichoice" type="select" value="a" optional="false" label="multichoice" help="Multiple choices" multiple="true">
+      <option value="a" checked="true">a</option>
+      <option value="b">b</option>
+      <option value="c">c</option>
+      <option value="d">d</option>
+      <sanitizer sanitize="false"/>
+    </param>
+  </inputs>
+  <outputs>
+    <data name="defaults">
+      <discover_datasets pattern="(?P&lt;designation&gt;output\.zip)" assign_primary_output="true" visible="true" format="zip"/>
+      <discover_datasets pattern="(?P&lt;designation&gt;stdout).+\.txt" visible="true" format="txt"/>
+      <discover_datasets pattern="(?P&lt;designation&gt;stderr).+\.txt" visible="true" format="txt"/>
+    </data>
+  </outputs>
+  <tests/>
+  <help>Test for a python3.8 inline code with many fake parameters</help>
+</tool>
